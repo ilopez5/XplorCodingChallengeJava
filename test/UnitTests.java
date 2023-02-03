@@ -97,9 +97,9 @@ public final class UnitTests {
         Assert.assertThrows(IllegalArgumentException.class, () -> new MastercardCard("5123-1234-1234-1234", "L234", 100, mcInterest));
         Assert.assertThrows(IllegalArgumentException.class, () -> new DiscoverCard("6011-1234-1234-1234", "O123", 100, discoverInterest));
 
-        //too many digits in cvc
-        Assert.assertThrows(IllegalArgumentException.class, () -> new VisaCard("4123-1234-1234-1234", "1234567", 100, visaInterest));
-        Assert.assertThrows(IllegalArgumentException.class, () -> new MastercardCard("5123-1234-1234-1234", "1234567", 100, mcInterest));
-        Assert.assertThrows(IllegalArgumentException.class, () -> new DiscoverCard("6011-1234-1234-1234", "1234567", 100, discoverInterest));
+        //wrong number digits in cvc
+        Assert.assertThrows(IllegalArgumentException.class, () -> new VisaCard("4123-1234-1234-1234", "1234", 100, visaInterest));
+        Assert.assertThrows(IllegalArgumentException.class, () -> new MastercardCard("5123-1234-1234-1234", "1234", 100, mcInterest));
+        Assert.assertThrows(IllegalArgumentException.class, () -> new DiscoverCard("6011-1234-1234-1234", "1234", 100, discoverInterest));
     }
 }

@@ -5,9 +5,6 @@ public abstract class Card extends Throwable {
     private double interestRate;
 
     public Card(String number, String cvc, double balance, double interestRate) {
-        if (!this.validateCvc(cvc))
-            throw new IllegalArgumentException(String.format("Invalid CVC '%s'", cvc));
-
         this.number = number;
         this.cvc = cvc;
         this.balance = balance;
@@ -41,15 +38,10 @@ public abstract class Card extends Throwable {
 
     //See https://en.wikipedia.org/wiki/Payment_card_number for actual rules.
     //I kept the validations a bit naive as I think total coverage was not
-    //the focus here. Same with validating CVC numbers.
+    //the focus here.
     public abstract boolean validateCardNumber(String number);
 
-    protected boolean validateCvc(String cvc)
-    {
-        if (cvc == null)
-            return false;
-        if (!cvc.chars().allMatch(Character::isDigit))
-            return false;
-        return cvc.length() == 3 || cvc.length() == 4;
-    }
+    //See https://www.legalstudies.com/faq/cvv-cvc-cid-credit-card-security-code-located-credit-card/
+    //for actual rules (mainly on number of digits).
+    public abstract boolean validateCvc(String cvc);
 }

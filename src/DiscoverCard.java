@@ -3,6 +3,8 @@ public final class DiscoverCard extends Card {
         super(number, cvc, balance, interestRate);
         if (validateCardNumber(number))
             throw new IllegalArgumentException(String.format("Invalid Discover card number '%s'", number));
+        if (!validateCvc(cvc))
+            throw new IllegalArgumentException(String.format("Invalid Visa card cvc '%s'", cvc));
     }
 
     @Override
@@ -18,5 +20,14 @@ public final class DiscoverCard extends Card {
             return true;
 
         return !cleaned.chars().allMatch(Character::isDigit);
+    }
+
+    @Override
+    public boolean validateCvc(String cvc) {
+        if (cvc == null)
+            return false;
+        if (!cvc.chars().allMatch(Character::isDigit))
+            return false;
+        return cvc.length() == 3;
     }
 }
