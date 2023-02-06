@@ -39,9 +39,9 @@ public abstract class Card extends Throwable {
     //See https://en.wikipedia.org/wiki/Payment_card_number for actual rules.
     //I kept the validations a bit naive as I think total coverage was not
     //the focus here.
-    public abstract boolean validateCardNumber(String number);
+    public abstract boolean isInvalidCardNumber(String number);
 
     //See https://www.legalstudies.com/faq/cvv-cvc-cid-credit-card-security-code-located-credit-card/
     //for actual rules (mainly on number of digits).
-    public abstract boolean validateCvc(String cvc);
+    public abstract boolean isInvalidCardCvc(String cvc);
 }

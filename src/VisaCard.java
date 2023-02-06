@@ -1,14 +1,14 @@
 public final class VisaCard extends Card {
     public VisaCard(String number, String cvc, double balance, double interestRate) {
         super(number, cvc, balance, interestRate);
-        if (validateCardNumber(number))
+        if (isInvalidCardNumber(number))
             throw new IllegalArgumentException(String.format("Invalid Visa card number '%s'", number));
-        if (!validateCvc(cvc))
+        if (isInvalidCardCvc(cvc))
             throw new IllegalArgumentException(String.format("Invalid Visa card cvc '%s'", cvc));
     }
 
     @Override
-    public boolean validateCardNumber(String number) {
+    public boolean isInvalidCardNumber(String number) {
         if (number == null)
             return true;
 
@@ -23,11 +23,13 @@ public final class VisaCard extends Card {
     }
 
     @Override
-    public boolean validateCvc(String cvc) {
+    public boolean isInvalidCardCvc(String cvc) {
         if (cvc == null)
-            return false;
+            return true;
+
         if (!cvc.chars().allMatch(Character::isDigit))
-            return false;
-        return cvc.length() == 3;
+            return true;
+
+        return cvc.length() != 3;
     }
 }
