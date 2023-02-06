@@ -4,7 +4,15 @@ public final class DiscoverCard extends Card {
         if (isInvalidCardNumber(number))
             throw new IllegalArgumentException(String.format("Invalid Discover card number '%s'", number));
         if (isInvalidCardCvc(cvc))
-            throw new IllegalArgumentException(String.format("Invalid Visa card cvc '%s'", cvc));
+            throw new IllegalArgumentException(String.format("Invalid Discover card cvc '%s'", cvc));
+    }
+
+    @Override
+    public void setCvc(String cvc)
+    {
+        if (isInvalidCardCvc(cvc))
+            throw new IllegalArgumentException(String.format("Invalid Discover card cvc '%s'", cvc));
+        super.setCvc(cvc);
     }
 
     @Override

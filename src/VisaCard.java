@@ -8,6 +8,14 @@ public final class VisaCard extends Card {
     }
 
     @Override
+    public void setCvc(String cvc)
+    {
+        if (isInvalidCardCvc(cvc))
+            throw new IllegalArgumentException(String.format("Invalid Visa card cvc '%s'", cvc));
+        super.setCvc(cvc);
+    }
+
+    @Override
     public boolean isInvalidCardNumber(String number) {
         if (number == null)
             return true;
