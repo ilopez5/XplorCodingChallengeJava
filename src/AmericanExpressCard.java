@@ -34,8 +34,10 @@ public final class AmericanExpressCard extends Card {
     public boolean isInvalidCardCvc(String cvc) {
         if (cvc == null)
             return true;
-        if (!cvc.chars().allMatch(Character::isDigit))
+
+        if (cvc.length() != 4)
             return true;
-        return cvc.length() != 4;
+
+        return !cvc.chars().allMatch(Character::isDigit);
     }
 }

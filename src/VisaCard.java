@@ -35,9 +35,9 @@ public final class VisaCard extends Card {
         if (cvc == null)
             return true;
 
-        if (!cvc.chars().allMatch(Character::isDigit))
+        if (cvc.length() != 3)
             return true;
 
-        return cvc.length() != 3;
+        return !cvc.chars().allMatch(Character::isDigit);
     }
 }
